@@ -1,0 +1,16 @@
+{
+    "inputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "003008IN"
+        }
+    },
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "003008OUT"
+        }
+    },
+    "id": "d09b8e00-e12c-4681-84b5-651361ccacac",
+    "version": "5.2.0.0"
+}

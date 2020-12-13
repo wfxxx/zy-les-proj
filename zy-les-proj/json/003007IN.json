@@ -1,0 +1,66 @@
+{
+    "Z_EAI_EXP_MATERIAL": {
+        "import": {
+            "IS_COMMON": {
+                "CALLBACKID": "MES",
+                "INFOCODE": "",
+                "MESSAGE": "",
+                "TIME_BEGIN": "",
+                "TIME_END": ""
+            },
+            "I_BEGDA": "2020-11-16",
+            "I_BEGZT": "00:00:00",
+            "I_ENDDA": "2020-11-17",
+            "I_ENDZT": "00:00:00"
+        },
+        "export": {
+            "ES_COMMON": {
+                "CALLBACKID": "MES",
+                "INFOCODE": "0",
+                "MESSAGE": "成功",
+                "TIME_BEGIN": "20201119074256",
+                "TIME_END": "20201119074256"
+            },
+            "E_ENDDA": "2020-11-18",
+            "E_ENDZT": "00:00:00"
+        },
+        "tables": {
+            "ET_MAKT": "",
+            "ET_MARA": "",
+            "ET_MARC": "",
+            "ET_MARD": "",
+            "ET_MAT": {
+                "row": [
+                    {
+                        "MATNR": "B11-1303211NA",
+                        "WERKS": "1000",
+                        "LGPRO": "",
+                        "LOGGR": "",
+                        "KZKRI": "",
+                        "MAKTX_CN": "发动机出水管test",
+                        "MAKTX_EN": "WATER OUTLET HOSE-ENGINE",
+                        "SPART": "20",
+                        "AUMNG": "0.000",
+                        "MEINH": "EA",
+                        "LVORM": "X",
+                        "FORE1": "MES",
+                        "FORE2": "",
+                        "FORE3": "",
+                        "FORE4": "ROA",
+                        "FORE5": "",
+                        "FORE6": "",
+                        "FORE7": "",
+                        "FORE8": "20201116"
+                    }
+                ]
+            },
+            "ET_MVKE": "",
+            "T_PROPERTY": {
+                "row": {
+                    "NAME": "LINE_ET_MAT",
+                    "VALUE": "1"
+                }
+            }
+        }
+    }
+}

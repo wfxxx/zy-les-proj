@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ws="http://www.mulesoft.org/schema/mule/ws"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+	<!-- 引入properties -->
+	<context:property-placeholder location="uat.properties" />
+	
+	<!-- LES HTTP_Configuration-->
+	<http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="${les.http.port}" doc:name="HTTP Listener Configuration"/>
+	
+	<!-- 数据库连接信息 -->
+	<db:oracle-config name="Oracle_Configuration" host="${les.db.host}" port="${les.db.port}" instance="${les.db.instance}" user="${les.db.user}" password="${les.db.password}" doc:name="Oracle Configuration"/>
+	
+	<http:request-config name="HTTP_SAP" host="${les.esb.ip}" port="${les.esb.port}" doc:name="HTTP Request Configuration"/>
+	<db:template-query name="Template_Query" doc:name="Template Query">
+		<db:parameterized-query><![CDATA[INSERT into udt_o_eai_dn_part_sap(TE_BAS_PART_SAP_ID,PLANT_NO,WORKSHOP_NO,PART_NO,PART_NAME_C,PART_NAME_E,BASE_UNIT,PART_TYPE1,ITEM_EDIT_STATUS)
+VALUES(UDT_O_EAI_DN_PART_SAP_SEQ1.nextval,:PLANT_NO,:WORKSHOP_NO,:PART_NO,:PART_NAME_C,:PART_NAME_E,:BASE_UNIT,:PART_TYPE1,:ITEM_EDIT_STATUS)]]></db:parameterized-query>
+		<db:in-param name="PLANT_NO" defaultValue="#[payload.PLANT_NO]"/>
+		<db:in-param name="WORKSHOP_NO" defaultValue="#[payload.WORKSHOP_NO]"/>
+		<db:in-param name="PART_NO" defaultValue="#[payload.PART_NO]"/>
+		<db:in-param name="PART_NAME_C" defaultValue="#[payload.PART_NAME_C]"/>
+		<db:in-param name="PART_NAME_E" defaultValue="#[payload.PART_NAME_E]"/>
+		<db:in-param name="BASE_UNIT" defaultValue="#[payload.BASE_UNIT]"/>
+		<db:in-param name="PART_TYPE1" defaultValue="#[payload.PART_TYPE1]"/>
+		<db:in-param name="ITEM_EDIT_STATUS" defaultValue="#[payload.ITEM_EDIT_STATUS]"/>
+	</db:template-query>
+
+	<db:template-query name="Template_Query1" doc:name="Template Query">
+		<db:parameterized-query><![CDATA[INSERT INTO ZEAI.UDT_O_EAI_DN_SUPPL_SAP(TE_BAS_SUPPL_SAP_ID,SUPPL_NO,SUPPL_NAME_C,ITEM_EDIT_STATUS)
+VALUES(UDT_O_EAI_DN_SUPPL_SAP_SEQ1.nextval,:SUPPL_NO,:SUPPL_NAME_C,:ITEM_EDIT_STATUS)]]></db:parameterized-query>
+		<db:in-param name="SUPPL_NO" defaultValue="#[payload.SUPPL_NO]"/>
+		<db:in-param name="SUPPL_NAME_C" defaultValue="#[payload.SUPPL_NAME_C]"/>
+		<db:in-param name="ITEM_EDIT_STATUS" defaultValue="#[payload.ITEM_EDIT_STATUS]"/>
+	</db:template-query>
+	
+	<db:template-query name="Template_Query2" doc:name="Template Query">
+		<db:parameterized-query><![CDATA[INSERT INTO UDT_O_EAI_DN_PARTSUPPL_SAP(TE_BAS_PART_SUPPL_ID,PART_NO,SUPPLIER_NO,ITEM_EDIT_STATUS,PLANT_NO)
+VALUES(UDT_O_EAI_DN_PSUPPL_SAP_SEQ1.nextval,:PART_NO,:SUPPLIER_NO,:ITEM_EDIT_STATUS,:PLANT_NO)]]></db:parameterized-query>
+		<db:in-param name="PART_NO" defaultValue="#[payload.PART_NO]"/>
+		<db:in-param name="SUPPLIER_NO" defaultValue="#[payload.SUPPLIER_NO]"/>
+		<db:in-param name="ITEM_EDIT_STATUS" defaultValue="#[payload.ITEM_EDIT_STATUS]"/>
+		<db:in-param name="PLANT_NO" defaultValue="#[payload.PLANT_NO]"/>
+	</db:template-query>
+	<cxf:configuration name="CXF_Configuration" enableMuleSoapHeaders="true" initializeStaticBusInstance="true" doc:name="CXF Configuration"/>
+	<ws:consumer-config name="Web_Service_Consumer" wsdlLocation="AsynNotifyService.wsdl" service="EAILESAsynNotifyService" port="EAI_LES_AsynNotifyPort" serviceAddress="http://${les.ws.ip}/les/service/EAILESAsynNotifyService" doc:name="Web Service Consumer"/>
+	
+	<!-- Rest Exception -->
+	<catch-exception-strategy name="CatchExceptionStrategy">
+        <set-property propertyName="http.status" value="500" doc:name="Property"/>
+        <set-payload value="#['&quot;rtnCode&quot;:&quot;U&quot;,&quot;rtnMsg&quot;:&quot;&#35775;&#38382;&#22833;&#36133;&#65281;&quot;']" doc:name="Set Payload"/>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB_RES">
+			<spring:property name="stage" value="OB_RES"/>
+		</custom-transformer>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST_RES">
+			<spring:property name="stage" value="INST_RES"/>
+		</custom-transformer>
+    </catch-exception-strategy>
+    <catch-exception-strategy when="#[exception.causeMatches('com.definesys.dsgc.mule.security.*')]" name="securityException">
+        <set-property propertyName="http.status" value="401" doc:name="Property"/>
+        <set-payload value="#['{&quot;rtnCode&quot;:&quot;401&quot;,&quot;rtnMsg&quot;:&quot;认证失败！&quot;']" doc:name="Set Payload"/>
+    </catch-exception-strategy>
+    <choice-exception-strategy name="global_Exception_Strategy">
+        <exception-strategy ref="securityException" doc:name="Reference Exception Strategy"/>
+        <exception-strategy ref="CatchExceptionStrategy" doc:name="Reference Exception Strategy"/>
+    </choice-exception-strategy>
+    
+     <!-- Soap Exception -->
+    <catch-exception-strategy name="CatchSoapExceptionStrategy">
+        <set-property propertyName="http.status" value="500" doc:name="Property"/>
+        <set-payload value="&lt;response&gt;
+	&lt;rtnCode&gt;U&lt;/rtnCode&gt;
+	&lt;rtnMsg&gt;&#35775;&#38382;&#22833;&#36133;&lt;/rtnMsg&gt;
+&lt;/response&gt;" doc:name="Set Payload" encoding="UTF-8"/>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB_RES">
+			<spring:property name="stage" value="OB_RES"/>
+		</custom-transformer>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST_RES">
+			<spring:property name="stage" value="INST_RES"/>
+		</custom-transformer>
+    </catch-exception-strategy>
+    <catch-exception-strategy when="#[exception.causeMatches('com.definesys.dsgc.mule.security.*')]" name="securitySoapException">
+        <set-property propertyName="http.status" value="401" doc:name="Property"/>
+        <set-payload value="&lt;response&gt;
+	&lt;rtnCode&gt;U&lt;/rtnCode&gt;
+	&lt;rtnMsg&gt;&#35748;&#35777;&#22833;&#36133;&lt;/rtnMsg&gt;
+&lt;/response&gt;" doc:name="Set Payload" encoding="UTF-8"/>
+    </catch-exception-strategy>
+    <choice-exception-strategy name="global_Soap_Exception_Strategy">
+        <exception-strategy ref="securitySoapException" doc:name="Reference Exception Strategy"/>
+        <exception-strategy ref="CatchSoapExceptionStrategy" doc:name="Reference Exception Strategy"/>
+    </choice-exception-strategy>
+
+</mule>

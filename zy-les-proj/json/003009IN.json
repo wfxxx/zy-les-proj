@@ -1,0 +1,55 @@
+{
+    "Z_EAI_EXP_INFOREC": {
+        "import": {
+            "IS_COMMON": {
+                "CALLBACKID": "LES",
+                "INFOCODE": null,
+                "MESSAGE": null,
+                "TIME_BEGIN": null,
+                "TIME_END": null
+            },
+            "I_BEGDA": "2020-11-18",
+            "I_BEGZT": "00:00:00",
+            "I_ENDDA": "2020-11-19",
+            "I_ENDZT": "00:00:00"
+        },
+        "export": {
+            "ES_COMMON": {
+                "CALLBACKID": "LES",
+                "INFOCODE": "0",
+                "MESSAGE": "成功",
+                "TIME_BEGIN": "20201120095537",
+                "TIME_END": "20201120095537"
+            },
+            "E_OENDDA": "2020-11-19",
+            "E_OENDZT": "00:00:00"
+        },
+        "tables": {
+            "ET_ITEM": {
+                "row": [
+                    {
+                        "@id": "0",
+                        "MATNR": "T11-1303501NA",
+                        "LIFNR": "JS11140",
+                        "LOEKZ": "I",
+                        "WERKS": "123"
+                    },
+                    {
+                        "@id": "1",
+                        "MATNR": "T11-6105290ABBK",
+                        "LIFNR": "AH11001",
+                        "LOEKZ": "U",
+                        "WERKS": "123"
+                    }
+                ]
+            },
+            "T_PROPERTY": {
+                "row": {
+                    "@id": "0",
+                    "NAME": "LINE_ET_ITEM",
+                    "VALUE": "2"
+                }
+            }
+        }
+    }
+}

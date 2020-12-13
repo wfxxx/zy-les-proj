@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd">
+	
+	<flow name="ESB&#23450;&#26102;&#36890;&#30693;LES&#21516;&#27493;&#25991;&#20214;&#20449;&#24687;(003001)">
+		<http:listener config-ref="HTTP_Listener_Configuration" path="/LES/RCV/003001" doc:name="HTTP"/>
+		<cxf:proxy-service configuration-ref="CXF_Configuration" payload="body" doc:name="CXF" namespace="http://services.chery.com/services/" service="EAILESAsynNotifyService" wsdlLocation="AsynNotifyService.wsdl"/>
+		<custom-transformer  class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST">
+			<spring:property name="stage" value="INST"/>
+		</custom-transformer>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB">
+			<spring:property name="toSystem" value="ESB"/>
+			<spring:property name="stage" value="OB"/>
+		</custom-transformer>
+		<ws:consumer config-ref="Web_Service_Consumer" doc:name="Web Service Consumer" operation="AsynNotify"/>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB_RES">
+			<spring:property name="stage" value="OB_RES"/>
+		</custom-transformer>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST_RES">
+			<spring:property name="stage" value="INST_RES"/>
+		</custom-transformer>
+		<logger message="#[payload]" level="INFO" doc:name="Logger"/>
+		<exception-strategy ref="global_Soap_Exception_Strategy" doc:name="Reference Exception Strategy"/>
+	</flow>
+	<flow name="LES-&#29289;&#26009;&#20027;&#25968;&#25454;&#19979;&#21457;(003007)">
+		<http:listener config-ref="HTTP_Listener_Configuration" path="/LES/RCV/003007" doc:name="HTTP"/>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST">
+			<spring:property name="stage" value="INST"/>
+		</custom-transformer>
+		<http:request config-ref="HTTP_SAP" path="/SAP/SRC/001001" method="POST" doc:name="HTTP">
+			<http:request-builder>
+				<http:header headerName="reqId" value="#[message.inboundProperties.reqId]"/>
+				<http:header headerName="reqFrom" value="#[message.inboundProperties.reqFrom]"/>
+			</http:request-builder>
+		</http:request>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB">
+			<spring:property name="toSystem" value="LES"/>
+			<spring:property name="stage" value="OB"/>
+		</custom-transformer>
+		<choice doc:name="Choice">
+			<when expression="#[payload.contains('&quot;INFOCODE&quot; : &quot;1&quot;')]">
+				<set-variable variableName="rtnCode" value="${WarningCode}" doc:name="rtnCode(W)"/>
+				<set-variable variableName="rtnMsg" value="${WarningMsg}" doc:name="rtnMsg"/>
+			</when>
+			<otherwise>
+				<dw:transform-message doc:name="&#26377;&#20540;&#25968;&#25454;&#36716;&#25442;" metadata:id="bdb0cbb6-ecd1-476a-8911-9d718b19df6b">
+					<dw:input-payload mimeType="application/json"/>
+					<dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+payload.Z_EAI_EXP_MATERIAL.tables.ET_MAT.row map ((row , indexOfRow) -> {
+	PLANT_NO: row.WERKS,
+	WORKSHOP_NO: row.LGPRO,
+	PART_NO: row.MATNR,
+	PART_NAME_C: row.MAKTX_CN,
+	PART_NAME_E: row.MAKTX_EN,
+	BASE_UNIT: row.MEINH,
+	ITEM_EDIT_STATUS: row.LVORM
+})]]></dw:set-payload>
+				</dw:transform-message>
+				<json:json-to-object-transformer returnClass="java.util.List" doc:name="JSON to Object"/>
+				<db:insert config-ref="Oracle_Configuration" bulkMode="true" doc:name="Database">
+					<db:template-query-ref name="Template_Query"/>
+				</db:insert>
+				<set-variable variableName="rtnCode" value="${SucessCode}" doc:name="rtnCode(S)"/>
+				<set-variable variableName="rtnMsg" value="${SucessMsg}" doc:name="rtnMsg"/>
+			</otherwise>
+		</choice>
+		<dw:transform-message doc:name="respons" metadata:id="689e23a6-ce80-4977-9ca3-7d7981ffa776">
+			<dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	rtnCode: flowVars.rtnCode,
+	rtnMsg: flowVars.rtnMsg
+}]]></dw:set-payload>
+		</dw:transform-message>
+		
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB_RES">
+			<spring:property name="stage" value="OB_RES"/>
+		</custom-transformer>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST_RES">
+			<spring:property name="stage" value="INST_RES"/>
+		</custom-transformer>
+		<logger message="#[payload]" level="INFO" doc:name="Logger"/>
+		<exception-strategy ref="global_Exception_Strategy" doc:name="Reference Exception Strategy"/>
+	</flow>
+	<flow name="LES-&#20379;&#24212;&#21830;&#20027;&#25968;&#25454;(003008)">
+		<http:listener config-ref="HTTP_Listener_Configuration" path="/LES/RCV/003008" doc:name="HTTP"/>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST">
+			<spring:property name="stage" value="INST"/>
+		</custom-transformer>
+		<http:request config-ref="HTTP_SAP" path="/SAP/SRC/001003" method="POST" doc:name="HTTP">
+			<http:request-builder>
+				<http:header headerName="reqId" value="#[message.inboundProperties.reqId]"/>
+				<http:header headerName="reqFrom" value="#[message.inboundProperties.reqFrom]"/>
+			</http:request-builder>
+		</http:request>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB">
+			<spring:property name="toSystem" value="LES"/>
+			<spring:property name="stage" value="OB"/>
+		</custom-transformer>
+		<choice doc:name="Choice">
+			<when expression="#[payload.contains('&quot;INFOCODE&quot; : &quot;1&quot;')]">
+				<set-variable variableName="rtnCode" value="${WarningCode}" doc:name="rtnCode(W)"/>
+				<set-variable variableName="rtnMsg" value="${WarningMsg}" doc:name="rtnMsg"/>
+			</when>
+			<otherwise>
+				<dw:transform-message doc:name="&#26377;&#20540;&#25968;&#25454;&#36716;&#25442;" metadata:id="d09b8e00-e12c-4681-84b5-651361ccacac">
+					<dw:input-payload mimeType="application/json"/>
+					<dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+payload.Z_EAI_EXP_VENDOR.tables.ET_LFA1.row map ((row , indexOfRow) -> {
+	SUPPL_NO: row.LIFNR,
+	SUPPL_NAME_C: row.NAME1,
+	ITEM_EDIT_STATUS: row.LOEVM
+})]]></dw:set-payload>
+				</dw:transform-message>
+				<json:json-to-object-transformer returnClass="java.util.List" doc:name="JSON to Object"/>
+				<db:insert config-ref="Oracle_Configuration" doc:name="Database" bulkMode="true">
+					<db:template-query-ref name="Template_Query1"/>
+				</db:insert>
+				<set-variable variableName="rtnCode" value="${SucessCode}" doc:name="rtnCode(S)"/>
+				<set-variable variableName="rtnMsg" value="${SucessMsg}" doc:name="rtnMsg"/>
+			</otherwise>
+		</choice>
+		<dw:transform-message doc:name="respons" metadata:id="2ecf7d71-4c87-4b98-9c9d-64ebc7093718">
+			<dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	rtnCode: flowVars.rtnCode,
+	rtnMsg: flowVars.rtnMsg
+}]]></dw:set-payload>
+		</dw:transform-message>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB_RES">
+			<spring:property name="stage" value="OB_RES"/>
+		</custom-transformer>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST_RES">
+			<spring:property name="stage" value="INST_RES"/>
+		</custom-transformer>
+		<logger message="#[payload]" level="INFO" doc:name="Logger"/>
+		<exception-strategy ref="global_Exception_Strategy" doc:name="Reference Exception Strategy"/>
+	</flow>
+	<flow name="LES-&#38646;&#20214;&#20379;&#24212;&#21830;&#20851;&#31995;(003009)">
+		<http:listener config-ref="HTTP_Listener_Configuration" path="/LES/RCV/003009" doc:name="HTTP"/>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST">
+			<spring:property name="stage" value="INST"/>
+		</custom-transformer>
+		<http:request config-ref="HTTP_SAP" path="/SAP/SRC/001004" method="POST" doc:name="HTTP">
+			<http:request-builder>
+				<http:header headerName="reqId" value="#[message.inboundProperties.reqId]"/>
+				<http:header headerName="reqFrom" value="#[message.inboundProperties.reqFrom]"/>
+			</http:request-builder>
+		</http:request>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB">
+			<spring:property name="stage" value="OB"/>
+			<spring:property name="toSystem" value="LES"/>
+		</custom-transformer>
+		<choice doc:name="Choice">
+			<when expression="#[payload.contains('&quot;INFOCODE&quot; : &quot;1&quot;')]">
+				<set-variable variableName="rtnCode" value="${WarningCode}" doc:name="rtnCode(W)"/>
+				<set-variable variableName="rtnMsg" value="${WarningMsg}" doc:name="rtnMsg"/>
+			</when>
+			<otherwise>
+				<dw:transform-message doc:name="&#26377;&#20540;" metadata:id="5710987e-824c-4e13-acb8-5f231bc5b464">
+					<dw:input-payload mimeType="application/json"/>
+					<dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+payload.Z_EAI_EXP_INFOREC.tables.ET_ITEM.row map ((row , indexOfRow) -> {
+	PART_NO: row.MATNR,
+	SUPPLIER_NO: row.LIFNR,
+	ITEM_EDIT_STATUS: row.LOEKZ
+})]]></dw:set-payload>
+				</dw:transform-message>
+				<json:json-to-object-transformer returnClass="java.util.List" doc:name="JSON to Object"/>
+				<db:insert config-ref="Oracle_Configuration" bulkMode="true" doc:name="Database">
+					<db:template-query-ref name="Template_Query2"/>
+				</db:insert>
+				<set-variable variableName="rtnCode" value="${SucessCode}" doc:name="rtnCode(S)"/>
+				<set-variable variableName="rtnMsg" value="${SucessMsg}" doc:name="rtnMsg"/>
+			</otherwise>
+		</choice>
+		<dw:transform-message doc:name="respons" metadata:id="b459cc23-2972-4802-b276-a6b483facc89">
+			<dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	rtnCode: flowVars.rtnCode,
+	rtnMsg: flowVars.rtnMsg
+}]]></dw:set-payload>
+		</dw:transform-message>
+		
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="OB_RES">
+			<spring:property name="stage" value="OB_RES"/>
+		</custom-transformer>
+		<custom-transformer class="com.definesys.dsgc.mule.processor.MuleMsgProcessor" doc:name="INST_RES">
+			<spring:property name="stage" value="INST_RES"/>
+		</custom-transformer>
+		<logger level="INFO" doc:name="Logger"/>
+		<exception-strategy ref="global_Exception_Strategy" doc:name="Reference Exception Strategy"/>
+	</flow>
+</mule>

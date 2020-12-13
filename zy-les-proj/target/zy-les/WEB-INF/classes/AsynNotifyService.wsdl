@@ -1,0 +1,86 @@
+<?xml version="1.0" ?><wsdl:definitions name="EAILESAsynNotifyService" targetNamespace="http://services.chery.com/services/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://services.chery.com/services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://services.chery.com/services/" version="1.0" xmlns:tns="http://services.chery.com/services/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="CommonAsynNotification" type="tns:CommonAsynNotification"></xs:element>
+<xs:element name="CommonProcessNotification" type="tns:CommonProcessNotification"></xs:element>
+<xs:element name="CommonReply" type="tns:CommonReply"></xs:element>
+<xs:element name="FileUploadNotification" type="tns:FileUploadNotification"></xs:element>
+<xs:complexType name="CommonAsynNotification">
+<xs:sequence>
+<xs:element form="unqualified" name="SrcSystem" type="xs:string"></xs:element>
+<xs:element form="unqualified" name="DestSystem" type="xs:string"></xs:element>
+<xs:element form="unqualified" name="BusinessType" type="xs:string"></xs:element>
+<xs:element form="unqualified" name="BusinessID" type="xs:string"></xs:element>
+<xs:element form="unqualified" name="FileName" type="xs:string"></xs:element>
+<xs:element form="unqualified" name="ValidationCode" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CommonReply">
+<xs:sequence>
+<xs:element name="CallbackID" type="xs:string"></xs:element>
+<xs:element name="InfoCode" type="xs:string"></xs:element>
+<xs:element name="Message" type="xs:string"></xs:element>
+<xs:element name="TimeBegin" type="xs:string"></xs:element>
+<xs:element name="TimeEnd" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CommonProcessNotification">
+<xs:sequence>
+<xs:element name="BusinessID" type="xs:string"></xs:element>
+<xs:element name="CallbackID" type="xs:string"></xs:element>
+<xs:element name="InfoCode" type="xs:string"></xs:element>
+<xs:element name="Message" type="xs:string"></xs:element>
+<xs:element name="RecordsNumber" type="xs:string"></xs:element>
+<xs:element name="TableNumber" type="xs:string"></xs:element>
+<xs:element name="TimeBegin" type="xs:string"></xs:element>
+<xs:element name="TimeEnd" type="xs:string"></xs:element>
+<xs:element name="ValidationCode" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="FileUploadNotification">
+<xs:sequence>
+<xs:element name="SrcSystem" type="xs:string"></xs:element>
+<xs:element name="DestSystem" type="xs:string"></xs:element>
+<xs:element name="BusinessType" type="xs:string"></xs:element>
+<xs:element name="BusinessID" type="xs:string"></xs:element>
+<xs:element name="DetailFileName" type="xs:string"></xs:element>
+<xs:element name="HeaderFileName" type="xs:string"></xs:element>
+<xs:element name="ValidationCode" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="AsynNotify">
+    <wsdl:part element="tns:CommonAsynNotification" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AsynNotifyResponse">
+    <wsdl:part element="tns:CommonReply" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EAI_LES_AsynNotify">
+    <wsdl:operation name="AsynNotify">
+      <wsdl:input message="tns:AsynNotify" name="AsynNotify">
+    </wsdl:input>
+      <wsdl:output message="tns:AsynNotifyResponse" name="AsynNotifyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EAILESAsynNotifyServiceSoapBinding" type="tns:EAI_LES_AsynNotify">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="AsynNotify">
+      <soap:operation soapAction="http://services.chery.com/services/eai/AsynNotify" style="document"></soap:operation>
+      <wsdl:input name="AsynNotify">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="AsynNotifyResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EAILESAsynNotifyService">
+    <wsdl:port binding="tns:EAILESAsynNotifyServiceSoapBinding" name="EAI_LES_AsynNotifyPort">
+      <soap:address location="http://10.173.1.30:8080/les/service/EAILESAsynNotifyService"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

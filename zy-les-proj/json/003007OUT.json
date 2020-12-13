@@ -1,0 +1,12 @@
+[
+    {
+        "PLANT_NO": "1",
+        "WORKSHOP_NO": "2",
+        "PART_NO": "3",
+        "PART_NAME_C": "4",
+        "PART_NAME_E": "5",
+        "BASE_UNIT": "6",
+        "PART_TYPE1": "7",
+        "ITEM_EDIT_STATUS": "8"
+    }
+]

@@ -1,0 +1,489 @@
+<metadata__catalog__entry>
+  <version>5.2.0.0</version>
+  <types class="tree-map">
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>CommonAsynNotification</id>
+        <displayName>CommonAsynNotification</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+              <typeQName>
+                <namespaceURI>http://services.chery.com/services/</namespaceURI>
+                <localPart>CommonAsynNotification</localPart>
+                <prefix></prefix>
+              </typeQName>
+            </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>SrcSystem</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName>
+                      <namespaceURI>http://www.w3.org/2001/XMLSchema</namespaceURI>
+                      <localPart>string</localPart>
+                      <prefix></prefix>
+                    </typeQName>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI></namespaceURI>
+                    <localPart>SrcSystem</localPart>
+                    <prefix></prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>DestSystem</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI></namespaceURI>
+                    <localPart>DestSystem</localPart>
+                    <prefix></prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>BusinessType</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI></namespaceURI>
+                    <localPart>BusinessType</localPart>
+                    <prefix></prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>BusinessID</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI></namespaceURI>
+                    <localPart>BusinessID</localPart>
+                    <prefix></prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>FileName</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI></namespaceURI>
+                    <localPart>FileName</localPart>
+                    <prefix></prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ValidationCode</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI></namespaceURI>
+                    <localPart>ValidationCode</localPart>
+                    <prefix></prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+        </fields>
+        <rootElement>
+          <namespaceURI>http://services.chery.com/services/</namespaceURI>
+          <localPart>CommonAsynNotification</localPart>
+          <prefix>ns0</prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas>
+            <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ns1=&quot;http://cxf.apache.org/bindings/xformat&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:tns=&quot;http://services.chery.com/services/&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://services.chery.com/services/&quot; version=&quot;1.0&quot;&gt;&#xd;
+&lt;xs:element name=&quot;CommonAsynNotification&quot; type=&quot;tns:CommonAsynNotification&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;CommonProcessNotification&quot; type=&quot;tns:CommonProcessNotification&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;CommonReply&quot; type=&quot;tns:CommonReply&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;FileUploadNotification&quot; type=&quot;tns:FileUploadNotification&quot;/&gt;&#xd;
+&lt;xs:complexType name=&quot;CommonAsynNotification&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;SrcSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;DestSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;BusinessType&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;BusinessID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;FileName&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;ValidationCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;xs:complexType name=&quot;CommonReply&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element name=&quot;CallbackID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;InfoCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;Message&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeBegin&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeEnd&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;xs:complexType name=&quot;CommonProcessNotification&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element name=&quot;BusinessID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;CallbackID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;InfoCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;Message&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;RecordsNumber&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TableNumber&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeBegin&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeEnd&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;ValidationCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;xs:complexType name=&quot;FileUploadNotification&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element name=&quot;SrcSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;DestSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;BusinessType&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;BusinessID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;DetailFileName&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;HeaderFileName&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;ValidationCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;/xs:schema&gt;</string>
+          </schemas>
+          <encoding>UTF-8</encoding>
+          <baseUri>file:/D:/mulespace/zy-les-proj/src/main/wsdl/AsynNotifyService.wsdl</baseUri>
+        </schemas>
+        <namespaceManager>
+          <namespacePrefix class="tree-map">
+            <entry>
+              <string>http://services.chery.com/services/</string>
+              <string>ns0</string>
+            </entry>
+          </namespacePrefix>
+        </namespaceManager>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>CommonReply</id>
+        <displayName>CommonReply</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+              <typeQName>
+                <namespaceURI>http://services.chery.com/services/</namespaceURI>
+                <localPart>CommonReply</localPart>
+                <prefix></prefix>
+              </typeQName>
+            </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:CallbackID</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://services.chery.com/services/</namespaceURI>
+                    <localPart>CallbackID</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:InfoCode</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://services.chery.com/services/</namespaceURI>
+                    <localPart>InfoCode</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:Message</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://services.chery.com/services/</namespaceURI>
+                    <localPart>Message</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:TimeBegin</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://services.chery.com/services/</namespaceURI>
+                    <localPart>TimeBegin</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:TimeEnd</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://services.chery.com/services/</namespaceURI>
+                    <localPart>TimeEnd</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+        </fields>
+        <rootElement>
+          <namespaceURI>http://services.chery.com/services/</namespaceURI>
+          <localPart>CommonReply</localPart>
+          <prefix>ns0</prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas>
+            <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ns1=&quot;http://cxf.apache.org/bindings/xformat&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:tns=&quot;http://services.chery.com/services/&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://services.chery.com/services/&quot; version=&quot;1.0&quot;&gt;&#xd;
+&lt;xs:element name=&quot;CommonAsynNotification&quot; type=&quot;tns:CommonAsynNotification&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;CommonProcessNotification&quot; type=&quot;tns:CommonProcessNotification&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;CommonReply&quot; type=&quot;tns:CommonReply&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;FileUploadNotification&quot; type=&quot;tns:FileUploadNotification&quot;/&gt;&#xd;
+&lt;xs:complexType name=&quot;CommonAsynNotification&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;SrcSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;DestSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;BusinessType&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;BusinessID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;FileName&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element form=&quot;unqualified&quot; name=&quot;ValidationCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;xs:complexType name=&quot;CommonReply&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element name=&quot;CallbackID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;InfoCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;Message&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeBegin&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeEnd&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;xs:complexType name=&quot;CommonProcessNotification&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element name=&quot;BusinessID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;CallbackID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;InfoCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;Message&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;RecordsNumber&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TableNumber&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeBegin&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;TimeEnd&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;ValidationCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;xs:complexType name=&quot;FileUploadNotification&quot;&gt;&#xd;
+&lt;xs:sequence&gt;&#xd;
+&lt;xs:element name=&quot;SrcSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;DestSystem&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;BusinessType&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;BusinessID&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;DetailFileName&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;HeaderFileName&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;xs:element name=&quot;ValidationCode&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+&lt;/xs:sequence&gt;&#xd;
+&lt;/xs:complexType&gt;&#xd;
+&lt;/xs:schema&gt;</string>
+          </schemas>
+          <encoding reference="../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
+          <baseUri>file:/D:/mulespace/zy-les-proj/src/main/wsdl/AsynNotifyService.wsdl</baseUri>
+        </schemas>
+        <namespaceManager>
+          <namespacePrefix class="tree-map">
+            <entry>
+              <string>http://services.chery.com/services/</string>
+              <string>ns0</string>
+            </entry>
+          </namespacePrefix>
+        </namespaceManager>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+  </types>
+  <connectorName>Web_Service_Consumer</connectorName>
+</metadata__catalog__entry>
